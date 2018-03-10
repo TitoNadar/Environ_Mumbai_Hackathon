@@ -21,15 +21,23 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import tito.example.com.environ_mumbai_hackathon.Adapter.FragmentAdapter;
-import tito.example.com.environ_mumbai_hackathon.Fragment.EnvironlistFragment;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+import tito.example.com.environ_mumbai_hackathon.Fragment.AirFragment;
+import tito.example.com.environ_mumbai_hackathon.Fragment.SoilFragment;
+import tito.example.com.environ_mumbai_hackathon.Fragment.WaterFragment;
 import tito.example.com.environ_mumbai_hackathon.Helper.Common;
 import tito.example.com.environ_mumbai_hackathon.Interface.WaterService;
+import tito.example.com.environ_mumbai_hackathon.Model.Data;
+import tito.example.com.environ_mumbai_hackathon.Model.Records;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     WaterService waterService;
+    public List<Records> record_list=new ArrayList<Records>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +78,27 @@ public class MainActivity extends AppCompatActivity
         //here
 
         waterService= Common.getWaterService();
+          loadWaterData();
 
 
 
 
 
 
+    }
 
+    private void loadWaterData() {
+        waterService.getData().enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(Response<Data> response, Retrofit retrofit) {
+               record_list=response.body().getRecords();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -138,9 +160,9 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
        Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new EnvironlistFragment(), "Air");
-        adapter.addFragment(new EnvironlistFragment(), "Water");
-        adapter.addFragment(new EnvironlistFragment(), "Soil");
+        adapter.addFragment(new WaterFragment(), "Water");
+        adapter.addFragment(new AirFragment(), "Air");
+        adapter.addFragment(new SoilFragment(), "Soil");
         viewPager.setAdapter(adapter);
     }
     static class Adapter extends FragmentPagerAdapter {
