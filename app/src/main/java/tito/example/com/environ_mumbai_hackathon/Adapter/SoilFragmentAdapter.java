@@ -1,6 +1,10 @@
 package tito.example.com.environ_mumbai_hackathon.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,67 +14,65 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+import tito.example.com.environ_mumbai_hackathon.Helper.Common;
+import tito.example.com.environ_mumbai_hackathon.Interface.ItemClickListener;
+import tito.example.com.environ_mumbai_hackathon.Model.Records;
 import tito.example.com.environ_mumbai_hackathon.R;
 
 /**
  * Created by tito on 10/3/18.
  */
 
-public class SoilFragmentAdapter extends BaseAdapter {
-    private Context context;
-    private List<Shops> arrayList;
-    private LayoutInflater layoutinflater;
+class SoilSourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+{
+    ItemClickListener itemClickListener;
+    TextView textView;
+    ImageView circleImageView;
 
-    public SoilFragmentAdapter() {
+
+    public SoilSourceViewHolder(View itemView) {
+        super(itemView);
+        textView=(TextView)itemView.findViewById(R.id.source_name);
+        circleImageView=(ImageView) itemView.findViewById(R.id.source_image);
+        itemView.setOnClickListener(this);
     }
-
-    public SoilFragmentAdapter(Context context, List<Shops> arrayList) {
-        this.context = context;
-        this.arrayList=arrayList;
-        layoutinflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-
-    @Override
-    public int getCount() {
-        return arrayList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return position;
+    public void setItemClickListener(ItemClickListener itemClickListener)
+    {
+        this.itemClickListener=itemClickListener;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public void onClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),false );
     }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder listViewHolder;
-
-        if(convertView == null){
-            listViewHolder = new ViewHolder();
-            convertView = layoutinflater.inflate(R.layout.single_item, parent, false);
-            listViewHolder.icon= (ImageView)convertView.findViewById(R.id.image);
-            listViewHolder.name = (TextView)convertView.findViewById(R.id.shopsname);
-            convertView.setTag(listViewHolder);
-        }else{
-            listViewHolder = (ViewHolder)convertView.getTag();
-        }
-
-        Picasso.with(context).load(arrayList.get(position).getIconurl()).into(listViewHolder.icon);
-        listViewHolder.name.setText(arrayList.get(position).getShopname());
-
-        return convertView;
-    }
-
-    public static class ViewHolder{
-        public    ImageView icon;
-        public  TextView name;
-    }
-
 }
+public class SoilFragmentAdapter extends RecyclerView.Adapter<SoilSourceViewHolder>{
+    private Context context;
+    private List<Records> records;
 
 
+    public SoilFragmentAdapter(Context context, List<Records> records) {
+        this.context = context;
+        this.records=records;
+    }
+
+    @Override
+    public int getItemCount() {
+        return records.size();
+    }
+
+    @Override
+    public SoilSourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
+        View itemView=layoutInflater.inflate(R.layout.list_soil_item,parent,false);
+        return new SoilSourceViewHolder(itemView);
+
+    }
+
+    @Override
+    public void onBindViewHolder(final SoilSourceViewHolder holder,  final int position) {
+    }
 }

@@ -1,6 +1,10 @@
 package tito.example.com.environ_mumbai_hackathon.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +14,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+import tito.example.com.environ_mumbai_hackathon.Helper.Common;
+import tito.example.com.environ_mumbai_hackathon.Interface.ItemClickListener;
 import tito.example.com.environ_mumbai_hackathon.Model.Records;
 import tito.example.com.environ_mumbai_hackathon.R;
 
@@ -17,61 +26,54 @@ import tito.example.com.environ_mumbai_hackathon.R;
  * Created by tito on 10/3/18.
  */
 
-public class AirFragmentAdapter extends BaseAdapter {
+class AirSourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+{
+    ItemClickListener itemClickListener;
+    TextView textView;
+    ImageView circleImageView;
+
+
+    public AirSourceViewHolder(View itemView) {
+        super(itemView);
+        textView=(TextView)itemView.findViewById(R.id.source_name);
+        circleImageView=(ImageView) itemView.findViewById(R.id.source_image);
+        itemView.setOnClickListener(this);
+    }
+    public void setItemClickListener(ItemClickListener itemClickListener)
+    {
+        this.itemClickListener=itemClickListener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        itemClickListener.onClick(v,getAdapterPosition(),false );
+    }
+}
+public class AirFragmentAdapter extends RecyclerView.Adapter<AirSourceViewHolder>{
     private Context context;
-    private List<Records> arrayList;
-    private LayoutInflater layoutinflater;
+  private List<Records> records;
 
-    public AirFragmentAdapter() {
-    }
 
-    public AirFragmentAdapter(Context context, List<Records> arrayList) {
+    public AirFragmentAdapter(Context context,List<Records> records) {
         this.context = context;
-        this.arrayList=arrayList;
-        layoutinflater =(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.records=records;
     }
 
     @Override
-    public int getCount() {
-        return arrayList.size();
+    public int getItemCount() {
+        return records.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return position;
+    public AirSourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
+        View itemView=layoutInflater.inflate(R.layout.list_air_item,parent,false);
+        return new AirSourceViewHolder(itemView);
+
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public void onBindViewHolder(final AirSourceViewHolder holder,  final int position) {
+
     }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder listViewHolder;
-
-        if(convertView == null){
-            listViewHolder = new ViewHolder();
-            convertView = layoutinflater.inflate(R.layout.single_item, parent, false);
-            listViewHolder.icon= (ImageView)convertView.findViewById(R.id.image);
-            listViewHolder.name = (TextView)convertView.findViewById(R.id.shopsname);
-            convertView.setTag(listViewHolder);
-        }else{
-            listViewHolder = (ViewHolder)convertView.getTag();
-        }
-
-        Picasso.with(context).load(arrayList.get(position).getIconurl()).into(listViewHolder.icon);
-        listViewHolder.name.setText(arrayList.get(position).getShopname());
-
-        return convertView;
-    }
-
-    public static class ViewHolder{
-        public    ImageView icon;
-        public  TextView name;
-    }
-
-
-
-
 }

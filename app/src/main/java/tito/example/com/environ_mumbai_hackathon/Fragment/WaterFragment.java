@@ -39,7 +39,7 @@ public class WaterFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
         MainActivity mainActivity=new MainActivity();
         recordItems=mainActivity.record_list;
-        WaterFragmentAdapter waterFragmentAdapter=new WaterFragmentAdapter(getContext(),recordItems);
+        WaterFragmentAdapter waterFragmentAdapter=new WaterFragmentAdapter(getActivity(),recordItems);
         recyclerView.setAdapter(waterFragmentAdapter);
 
 //        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

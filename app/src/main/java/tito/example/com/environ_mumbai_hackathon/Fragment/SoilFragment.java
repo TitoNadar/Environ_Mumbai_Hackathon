@@ -1,6 +1,6 @@
 package tito.example.com.environ_mumbai_hackathon.Fragment;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,12 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
-
 import java.util.ArrayList;
-
-import tito.example.com.environ_mumbai_hackathon.Adapter.AirFragmentAdapter;
+import java.util.List;
+import tito.example.com.environ_mumbai_hackathon.Adapter.SoilFragmentAdapter;
+import tito.example.com.environ_mumbai_hackathon.MainActivity;
+import tito.example.com.environ_mumbai_hackathon.Model.Records;
 import tito.example.com.environ_mumbai_hackathon.R;
 
 /**
@@ -21,9 +20,9 @@ import tito.example.com.environ_mumbai_hackathon.R;
  */
 
 public class SoilFragment extends Fragment {
-    List<Shops> allItems=new ArrayList<>();
+    List<Records> recordItems=new ArrayList<>();
 
-    public AirFragment() {
+    public SoilFragment() {
     }
 
     @Override
@@ -36,9 +35,10 @@ public class SoilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-        //    allItems =  Shops.listAll(Shops.class);
-        AirFragmentAdapter airFragmentAdapter=new AirFragmentAdapter(getContext(),allItems);
-        recyclerView.setAdapter(airFragmentAdapter);
+        MainActivity mainActivity=new MainActivity();
+        recordItems=mainActivity.record_list;
+        SoilFragmentAdapter soilFragmentAdapter=new SoilFragmentAdapter(getActivity(),recordItems);
+        recyclerView.setAdapter(soilFragmentAdapter);
 
 //        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override

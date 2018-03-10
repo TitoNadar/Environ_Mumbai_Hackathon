@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import tito.example.com.environ_mumbai_hackathon.Adapter.AirFragmentAdapter;
+import tito.example.com.environ_mumbai_hackathon.MainActivity;
+import tito.example.com.environ_mumbai_hackathon.Model.Records;
 import tito.example.com.environ_mumbai_hackathon.R;
 
 
@@ -23,7 +26,7 @@ import tito.example.com.environ_mumbai_hackathon.R;
 
 public class AirFragment extends Fragment
 {
-    List<Shops> allItems=new ArrayList<>();
+    List<Records> recordItems=new ArrayList<>();
 
     public AirFragment() {
     }
@@ -37,9 +40,10 @@ public class AirFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-       RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
-    //    allItems =  Shops.listAll(Shops.class);
-        AirFragmentAdapter airFragmentAdapter=new AirFragmentAdapter(getContext(),allItems);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
+        MainActivity mainActivity=new MainActivity();
+        recordItems=mainActivity.record_list;
+        AirFragmentAdapter airFragmentAdapter=new AirFragmentAdapter(getActivity(),recordItems);
         recyclerView.setAdapter(airFragmentAdapter);
 
 //        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
