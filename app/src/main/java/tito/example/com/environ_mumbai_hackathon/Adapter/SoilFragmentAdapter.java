@@ -29,14 +29,14 @@ import tito.example.com.environ_mumbai_hackathon.R;
 class SoilSourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
     ItemClickListener itemClickListener;
-    TextView textView;
-    ImageView circleImageView;
+    TextView soilname,soil_index;
+
 
 
     public SoilSourceViewHolder(View itemView) {
         super(itemView);
-        textView=(TextView)itemView.findViewById(R.id.source_name);
-        circleImageView=(ImageView) itemView.findViewById(R.id.source_image);
+        soilname=(TextView)itemView.findViewById(R.id.rivername);
+        soil_index= itemView.findViewById(R.id.wqi);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener)
@@ -74,5 +74,7 @@ public class SoilFragmentAdapter extends RecyclerView.Adapter<SoilSourceViewHold
 
     @Override
     public void onBindViewHolder(final SoilSourceViewHolder holder,  final int position) {
+        holder.soilname.setText(records.get(position).getLocations());
+
     }
 }

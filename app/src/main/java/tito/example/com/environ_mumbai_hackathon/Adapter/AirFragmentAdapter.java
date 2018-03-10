@@ -29,14 +29,14 @@ import tito.example.com.environ_mumbai_hackathon.R;
 class AirSourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
     ItemClickListener itemClickListener;
-    TextView textView;
-    ImageView circleImageView;
+    TextView airname,air_index;
+
 
 
     public AirSourceViewHolder(View itemView) {
         super(itemView);
-        textView=(TextView)itemView.findViewById(R.id.source_name);
-        circleImageView=(ImageView) itemView.findViewById(R.id.source_image);
+        air_index=(TextView)itemView.findViewById(R.id.wqi);
+        airname= itemView.findViewById(R.id.rivername);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener)
@@ -74,6 +74,6 @@ public class AirFragmentAdapter extends RecyclerView.Adapter<AirSourceViewHolder
 
     @Override
     public void onBindViewHolder(final AirSourceViewHolder holder,  final int position) {
-
+     holder.airname.setText(records.get(position).getLocations());
     }
 }

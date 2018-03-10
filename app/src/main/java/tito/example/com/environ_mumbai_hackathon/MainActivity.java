@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Response<Data> response, Retrofit retrofit) {
                record_list=response.body().getRecords();
+               Log.d("tito",record_list.size()+"");
             }
 
             @Override

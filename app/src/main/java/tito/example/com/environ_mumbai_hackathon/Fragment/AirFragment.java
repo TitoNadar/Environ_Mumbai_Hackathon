@@ -45,21 +45,6 @@ public class AirFragment extends Fragment
         recordItems=mainActivity.record_list;
         AirFragmentAdapter airFragmentAdapter=new AirFragmentAdapter(getActivity(),recordItems);
         recyclerView.setAdapter(airFragmentAdapter);
-
-//        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if(position==0)
-//                {
-//                    openWall();
-//                }
-//                else{
-//                    Intent intent=new Intent(getActivity(), Webview.class);
-//                    intent.putExtra("webURL", Constants.urlShops[position]);
-//                    startActivity(intent);
-//                }
-//            }
-//        });
         return view;
     }
 }

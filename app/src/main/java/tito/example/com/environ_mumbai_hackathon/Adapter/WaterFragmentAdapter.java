@@ -14,12 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
-import tito.example.com.environ_mumbai_hackathon.Helper.Common;
 import tito.example.com.environ_mumbai_hackathon.Interface.ItemClickListener;
-import tito.example.com.environ_mumbai_hackathon.Model.Data;
 import tito.example.com.environ_mumbai_hackathon.Model.Records;
 import tito.example.com.environ_mumbai_hackathon.R;
 
@@ -31,14 +26,13 @@ import tito.example.com.environ_mumbai_hackathon.R;
 class WaterSourceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {
     ItemClickListener itemClickListener;
-    TextView textView;
-    ImageView circleImageView;
+    TextView water_index,river_name;
 
 
     public WaterSourceViewHolder(View itemView) {
         super(itemView);
-        textView=(TextView)itemView.findViewById(R.id.source_name);
-        circleImageView=(ImageView) itemView.findViewById(R.id.source_image);
+        water_index=(TextView)itemView.findViewById(R.id.wqi);
+        river_name=itemView.findViewById(R.id.rivername);
         itemView.setOnClickListener(this);
     }
     public void setItemClickListener(ItemClickListener itemClickListener)
@@ -76,7 +70,14 @@ public class WaterFragmentAdapter extends RecyclerView.Adapter<WaterSourceViewHo
 
     @Override
     public void onBindViewHolder(final WaterSourceViewHolder holder,  final int position) {
+          Log.d("tito_water_adapter",records.size()+"");
+       holder.river_name.setText(records.get(position).getLocations());
+       holder.setItemClickListener(new ItemClickListener() {
+           @Override
+           public void onClick(View view, int position, boolean isLongClick) {
 
+           }
+       });
 
     }
 }
