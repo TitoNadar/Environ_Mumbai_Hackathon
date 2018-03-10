@@ -5,4 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="Data_Gov_Api_Key">579b464db66ec23bdd000001a7acbad520184374518be6f67ffe8515</string>
 </resources>
