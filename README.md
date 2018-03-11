@@ -4,9 +4,14 @@
 ### Motivation:
 We as a team of technologists believe that the only thing worth contributing to the open-source community is by creating projects that are application-driven and also aides a social cause. We chose android, to reach mass users, and that's how the whole idea got evolved.
 
-### Build status: 
-
 ### ScreenShots:
+
+![screenshot_20180311-121425](https://user-images.githubusercontent.com/26847181/37250808-c1cadb36-252a-11e8-9f06-6ad95eb456cd.png)
+
+![screenshot_20180311-121024 1](https://user-images.githubusercontent.com/26847181/37250852-8118e884-252b-11e8-902a-b3561b7d9817.png)
+
+
+
 
 ### Tech used:
 Java, Android Studio, Firebase, IBM Watson Conversations.
