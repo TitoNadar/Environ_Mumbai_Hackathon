@@ -7,10 +7,10 @@ package tito.example.com.environ_mumbai_hackathon.Model;
 public class Data_air {
     private String datetime;
     private String country_name;
-    private String breezometer_aqi;
+    private int breezometer_aqi;
     private String breezometer_color;
     private String breezometer_description;
-    private String country_aqi;
+    private int country_aqi;
     private String country_aqi_prefix;
     private String country_color;
     private String country_description;
@@ -33,7 +33,7 @@ public class Data_air {
         this.dominant_pollutant_description = dominant_pollutant_description;
     }
 
-    public Data_air(String datetime, String country_name, String breezometer_aqi, String breezometer_color, String breezometer_description, String country_aqi, String country_aqi_prefix, String country_color, String country_description, String data_valid, String key_valid, Random_Recommendation random_recommendations, String dominant_pollutant_canonical_name, String dominant_pollutant_description, Dominant_pollutant_text dominant_pollutant_text, Pollutants pollutants) {
+    public Data_air(String datetime, String country_name, int breezometer_aqi, String breezometer_color, String breezometer_description, int country_aqi, String country_aqi_prefix, String country_color, String country_description, String data_valid, String key_valid, Random_Recommendation random_recommendations, String dominant_pollutant_canonical_name, String dominant_pollutant_description, Dominant_pollutant_text dominant_pollutant_text, Pollutants pollutants) {
         this.datetime = datetime;
         this.country_name = country_name;
         this.breezometer_aqi = breezometer_aqi;
@@ -68,11 +68,11 @@ public class Data_air {
         this.country_name = country_name;
     }
 
-    public String getBreezometer_aqi() {
+    public int getBreezometer_aqi() {
         return breezometer_aqi;
     }
 
-    public void setBreezometer_aqi(String breezometer_aqi) {
+    public void setBreezometer_aqi(int breezometer_aqi) {
         this.breezometer_aqi = breezometer_aqi;
     }
 
@@ -92,11 +92,11 @@ public class Data_air {
         this.breezometer_description = breezometer_description;
     }
 
-    public String getCountry_aqi() {
+    public int getCountry_aqi() {
         return country_aqi;
     }
 
-    public void setCountry_aqi(String country_aqi) {
+    public void setCountry_aqi(int country_aqi) {
         this.country_aqi = country_aqi;
     }
 
