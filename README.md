@@ -41,10 +41,10 @@ Clone and download the project, extract the file locally and import the project 
 2. Water Quality index api: https://api.data.gov.in/ 
 
 ### Authors:
-1. Tito Nadar
-2. Divyam Pandya
+1. Tito Nadar        https://github.com/TitoNadar
+2. Divyam Pandya     https://github.com/divyampandya63
 
-3. Yash Purohit
+3. Yash Purohit     https://github.com/iam7pY
 
 ### Licence :
 MIT
